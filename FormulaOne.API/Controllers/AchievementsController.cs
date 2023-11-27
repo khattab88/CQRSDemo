@@ -3,14 +3,19 @@ using FormulaOne.API.Dtos.Requests;
 using FormulaOne.API.Dtos.Responses;
 using FormulaOne.Data.Repositories.Interfaces;
 using FormulaOne.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormulaOne.API.Controllers
 {
     public class AchievementsController : BaseController
     {
-        public AchievementsController(IUnitOfWork unitOfWork, IMapper mapper)
-            : base(unitOfWork, mapper)
+        public AchievementsController(
+            IUnitOfWork unitOfWork, 
+            IMapper mapper,
+            IMediator mediator
+            )
+            : base(unitOfWork, mapper, mediator)
         {
         }
 
