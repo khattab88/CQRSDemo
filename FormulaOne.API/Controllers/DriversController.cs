@@ -37,12 +37,12 @@ namespace FormulaOne.API.Controllers
         [Route("{driverId:Guid}")]
         public async Task<IActionResult> GetDriver(Guid driverId)
         {
-            var driver = await _unitOfWork.Drivers.GetById(driverId);
+            var query = new GetDriverQuery(driverId);
 
-            if(driver is null)
+            var result = await _mediator.Send(query);
+
+            if (result is null)
                 return NotFound();
-
-            var result = _mapper.Map<DriverResponse>(driver);
 
             return Ok(result);
         }
