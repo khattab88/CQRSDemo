@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Achievements\" />
-    <Folder Include="Features\Drivers\Commands\" />
   </ItemGroup>
 
 </Project>

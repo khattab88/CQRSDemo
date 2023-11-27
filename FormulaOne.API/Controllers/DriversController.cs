@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FormulaOne.API.Dtos.Requests;
 using FormulaOne.API.Dtos.Responses;
+using FormulaOne.API.Features.Drivers.Commands;
 using FormulaOne.API.Features.Drivers.Queries;
 using FormulaOne.Data.Repositories.Interfaces;
 using FormulaOne.Entities;
@@ -53,12 +54,11 @@ namespace FormulaOne.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var driver = _mapper.Map<Driver>(createDto);
+            var command = new CreateDriverCommand(createDto);
 
-            await _unitOfWork.Drivers.Add(driver);
-            await _unitOfWork.CompleteAsync();
+            var driver = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetDriver), new { driverId = driver.Id }, driver);
+            return CreatedAtAction(nameof(GetDriver), new { driverId = driver.DriverId }, driver);
         }
 
         [HttpPut]
