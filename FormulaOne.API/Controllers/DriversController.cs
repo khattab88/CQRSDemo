@@ -81,13 +81,12 @@ namespace FormulaOne.API.Controllers
         [Route("{driverId:Guid}")]
         public async Task<IActionResult> DeleteDriver(Guid driverId)
         {
-            var driver = await _unitOfWork.Drivers.GetById(driverId);
+            var command = new DeleteDriverCommand(driverId);
 
-            if (driver is null)
+            var result = await _mediator.Send(command);
+
+            if(!result)
                 return NotFound();
-
-            await _unitOfWork.Drivers.Delete(driverId);
-            await _unitOfWork.CompleteAsync();
 
             return NoContent();
         }

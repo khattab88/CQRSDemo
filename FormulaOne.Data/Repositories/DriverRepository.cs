@@ -37,7 +37,7 @@ namespace FormulaOne.Data.Repositories
         {
             try
             {
-                var driver = await _dbSet.FirstOrDefaultAsync(d => d.Id == id);
+                var driver = await _dbSet.FirstOrDefaultAsync(d => d.Id == id && d.Status == 1);
 
                 if (driver is null) 
                     return false;
