@@ -67,10 +67,12 @@ namespace FormulaOne.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var driver = _mapper.Map<Driver>(updateDto);
+            var command = new UpdateDriverCommand(updateDto);
 
-            await _unitOfWork.Drivers.Update(driver);
-            await _unitOfWork.CompleteAsync();
+            var result = await _mediator.Send(command);
+
+            if(!result)
+                return BadRequest();
 
             return NoContent();
         }

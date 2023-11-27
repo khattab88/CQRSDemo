@@ -24,6 +24,7 @@ namespace FormulaOne.API.Mappings
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => 1));
 
             CreateMap<UpdateDriverRequest, Driver>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DriverId))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
         }
     }
