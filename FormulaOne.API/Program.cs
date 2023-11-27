@@ -30,6 +30,9 @@ namespace FormulaOne.API
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            // injecting MediatR to DI
+            builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(Program).Assembly));
+
 
             var app = builder.Build();
 
