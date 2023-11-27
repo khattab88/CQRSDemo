@@ -26,4 +26,9 @@
     <ProjectReference Include="..\FormulaOne.Data\FormulaOne.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Achievements\" />
+    <Folder Include="Features\Drivers\Commands\" />
+  </ItemGroup>
+
 </Project>
